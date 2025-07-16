@@ -16,13 +16,8 @@ RUN mkdir -p /usr/share/nginx/html && \
 COPY index.html /usr/share/nginx/html/
 COPY style.css /usr/share/nginx/html/
 
-# Copy and modify nginx config
-# Copy and modify nginx config
-RUN mkdir -p /opt/nginx && \
-    cp /etc/nginx/nginx.conf /opt/nginx/nginx.conf && \
-    sed -i 's/listen       80;/listen       8080;/g' /opt/nginx/nginx.conf && \
-    sed -i 's|error_log .*;|error_log /dev/stderr;|g; s|access_log .*;|access_log /dev/stdout;|g' /opt/nginx/nginx.conf && \
-    sed -i 's/^user/#user/' /opt/nginx/nginx.conf
+# Copy custom nginx config
+COPY nginx.conf /opt/nginx/nginx.conf
 
 # Set permissions
 RUN chmod -R 755 /usr/share/nginx/html
