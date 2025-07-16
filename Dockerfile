@@ -12,8 +12,9 @@ RUN useradd -r -u 1001 -g root -d /usr/share/nginx/html -s /sbin/nologin nginxus
 RUN mkdir -p /usr/share/nginx/html && \
     chown -R nginxuser:root /usr/share/nginx/html
 
-RUN cp /etc/nginx/mime.types /opt/nginx/mime.types
-
+# Create config directory and copy mime.types
+RUN mkdir -p /opt/nginx && \
+    cp /etc/nginx/mime.types /opt/nginx/mime.types
 
 # Copy website files
 COPY index.html /usr/share/nginx/html/
