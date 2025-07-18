@@ -33,5 +33,5 @@ USER 1001
 EXPOSE 8080
 
 # Use custom config
-CMD ["nginx", "-c", "/opt/nginx/nginx.conf", "-g", "daemon off;"]
+CMD ["nginx", "-c", "/opt/nginx/nginx.conf", "-g", "daemon off; error_log /dev/stderr;"]
 
